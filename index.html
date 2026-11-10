@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10284b">
+<title>NEXUS MARKET — Global Wholesale</title>
+<style>
+:root{--navy:#10284b;--blue:#2463d3;--pale:#edf3ff;--ink:#17243a;--muted:#68778d;--line:#e4eaf2;--bg:#f7f9fc;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 Inter,Arial,sans-serif;color:var(--ink);background:var(--bg)}button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:0 18px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.top{height:68px;display:flex;align-items:center;gap:20px}.logo{font-size:22px;font-weight:900;letter-spacing:-.8px;color:var(--navy);white-space:nowrap}.logo span{color:var(--blue)}.search{display:flex;flex:1;border:2px solid var(--blue);border-radius:30px;overflow:hidden;background:#fff}.search input{border:0;outline:0;padding:11px 16px;min-width:0;flex:1}.search button,.primary{border:0;background:var(--blue);color:white;padding:11px 20px;font-weight:700}.navbtn{border:0;background:transparent;color:var(--navy);font-weight:700;padding:9px}
+.subnav{border-top:1px solid var(--line);display:flex;gap:8px;overflow:auto;padding:8px 0}.subnav button{white-space:nowrap;border:0;background:transparent;color:var(--muted);padding:6px 12px;border-radius:20px}.subnav button.active,.subnav button:hover{background:var(--pale);color:var(--blue)}
+.hero{background:linear-gradient(115deg,#10284b,#174a91 65%,#2463d3);color:#fff;padding:52px 0 46px}.hero h1{font-size:clamp(30px,6vw,48px);line-height:1.08;margin:0 0 14px;max-width:650px}.hero p{max-width:570px;color:#dce8ff;margin:0 0 24px}.hero .search{max-width:650px;border:0;padding:4px}.hero .search button{border-radius:24px}.metrics{display:flex;gap:34px;margin-top:28px;flex-wrap:wrap}.metrics strong{display:block;font-size:21px}.metrics small{color:#dce8ff}
+section{padding:32px 0}.heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.heading h2{font-size:22px;margin:0;color:var(--navy)}.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.category{background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px;text-align:center;font-weight:700;color:var(--navy)}.category span{display:block;font-size:28px;margin-bottom:5px}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.product{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative}.photo{height:145px;display:grid;place-items:center;font-size:54px;background:var(--tone,#eaf1ff)}.pbody{padding:13px}.pbody h3{font-size:14px;line-height:1.35;margin:0 0 8px;min-height:38px}.price{font-weight:900;color:var(--navy);font-size:17px}.muted{font-size:12px;color:var(--muted);margin-top:4px}.tag{display:inline-block;background:var(--pale);color:var(--blue);font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px;margin-top:8px}.actions{display:flex;gap:7px;margin-top:12px}.actions button{flex:1;border-radius:8px;padding:8px 6px;font-size:12px;font-weight:700}.outline{background:#fff;border:1px solid var(--blue);color:var(--blue)}.heart{position:absolute;right:9px;top:9px;border:0;background:#fff;border-radius:50%;width:34px;height:34px;font-size:17px;box-shadow:0 2px 8px #0002}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.trust article{background:#fff;border:1px solid var(--line);padding:18px;border-radius:13px}.trust b{display:block;color:var(--navy);margin:5px 0}.empty{grid-column:1/-1;background:#fff;padding:30px;text-align:center;border-radius:12px;color:var(--muted)}
+footer{background:var(--navy);color:#dbe6f7;padding:28px 0;margin-top:25px}footer b{color:white}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#10284b;color:#fff;padding:10px 18px;border-radius:25px;display:none;z-index:9}
+@media(max-width:850px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.categories{grid-template-columns:repeat(2,1fr)}.top{gap:9px}.logo{font-size:18px}.navbtn{font-size:12px;padding:7px}.trust{grid-template-columns:1fr}}
+@media(max-width:480px){.top{height:auto;padding-top:12px;padding-bottom:10px;flex-wrap:wrap}.search{order:3;flex-basis:100%}.hero{padding:38px 0}.metrics{gap:18px}.products{gap:10px}.photo{height:120px}.pbody{padding:10px}.actions button{font-size:11px;padding:8px 3px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap top">
+    <div class="logo">NEXUS<span> MARKET</span></div>
+    <form class="search" id="topSearch"><input id="topQuery" placeholder="Search products, suppliers..." aria-label="Search"><button>Search</button></form>
+    <button class="navbtn" id="favoritesBtn">♡ Favorites <span id="favCount">0</span></button>
+    <button class="navbtn" id="inquiryBtn">Inquiry <span id="cartCount">0</span></button>
+  </div>
+  <nav class="wrap subnav" id="categoryNav">
+    <button class="active" data-cat="all">All products</button><button data-cat="electronics">Electronics</button><button data-cat="machinery">Machinery</button><button data-cat="apparel">Apparel</button><button data-cat="home">Home & Garden</button><button data-cat="packaging">Packaging</button><button data-cat="energy">Solar & Energy</button><button data-cat="auto">Auto Parts</button>
+  </nav>
+</header>
+<main>
+  <section class="hero"><div class="wrap">
+    <h1>Source smarter.<br>Trade globally.</h1>
+    <p>Discover products and connect with suppliers for your next business opportunity.</p>
+    <form class="search" id="heroSearch"><input id="heroQuery" placeholder="What are you looking for today?" aria-label="Search marketplace"><button>Find products</button></form>
+    <div class="metrics"><div><strong>12,000+</strong><small>Products to explore</small></div><div><strong>Verified-style</strong><small>Supplier profiles (demo)</small></div><div><strong>Global</strong><small>Business connections</small></div></div>
+  </div></section>
+  <section class="wrap"><div class="heading"><h2>Browse categories</h2></div><div class="categories">
+    <button class="category" data-cat="electronics"><span>📱</span>Electronics</button><button class="category" data-cat="machinery"><span>⚙️</span>Machinery</button><button class="category" data-cat="apparel"><span>👕</span>Apparel</button><button class="category" data-cat="home"><span>🏡</span>Home & Garden</button><button class="category" data-cat="packaging"><span>📦</span>Packaging</button><button class="category" data-cat="energy"><span>☀️</span>Solar & Energy</button><button class="category" data-cat="auto"><span>🚗</span>Auto Parts</button><button class="category" data-cat="beauty"><span>🧴</span>Beauty & Care</button>
+  </div></section>
+  <section class="wrap" id="listing"><div class="heading"><h2 id="listTitle">Featured products</h2><span class="muted">Sample marketplace listings</span></div><div class="products" id="products"></div></section>
+  <section class="wrap"><div class="heading"><h2>Why Nexus Market?</h2></div><div class="trust"><article>🔎<b>Discover suppliers</b><span class="muted">Explore sample businesses and product ranges.</span></article><article>💬<b>Send inquiries</b><span class="muted">Collect products and prepare a supplier inquiry.</span></article><article>🌍<b>Trade with confidence</b><span class="muted">A clear starting point for a global B2B marketplace.</span></article></div></section>
+</main>
+<footer><div class="wrap"><b>NEXUS MARKET</b><p>Global wholesale connections start here.</p><small>Demo prototype — supplier details, ratings and listings are sample data. No real orders or payments are processed.</small></div></footer>
+<div class="toast" id="toast"></div>
+<script>
+const products=[
+{id:'p1',name:'Wireless Noise-Cancelling Earbuds',cat:'electronics',price:'US$8.40–11.20',moq:'500 pairs',emoji:'🎧',tone:'#dbe8ff',supplier:'Shenzhen Lumina Technology Co.'},
+{id:'p2',name:'Smart Fitness Watch with AMOLED Display',cat:'electronics',price:'US$16–22',moq:'300 pieces',emoji:'⌚',tone:'#e3f1ff',supplier:'Shenzhen Lumina Technology Co.'},
+{id:'p3',name:'CNC Vertical Machining Center VMC850',cat:'machinery',price:'US$31,500–38,900',moq:'1 set',emoji:'🏗️',tone:'#e8ecf4',supplier:'Ruhr Precision Machinery GmbH'},
+{id:'p4',name:'Industrial Laser Cutting Machine 3kW',cat:'machinery',price:'US$24,800–29,900',moq:'1 set',emoji:'🔧',tone:'#eef0f7',supplier:'Ruhr Precision Machinery GmbH'},
+{id:'p5',name:'Organic Cotton Polo Shirts',cat:'apparel',price:'US$4.20–6.90',moq:'200 pieces',emoji:'👕',tone:'#e6f3ee',supplier:'Bosphorus Textile Group'},
+{id:'p6',name:'Technical Softshell Jacket',cat:'apparel',price:'US$14.50–19',moq:'100 pieces',emoji:'🧥',tone:'#e9eefb',supplier:'Bosphorus Textile Group'},
+{id:'p7',name:'550W Mono PERC Solar Panel',cat:'energy',price:'US$0.11–0.14',moq:'1,000 watts',emoji:'☀️',tone:'#fff3d6',supplier:'Pune GreenPower Systems'},
+{id:'p8',name:'10kWh Residential Battery Storage',cat:'energy',price:'US$1,850–2,300',moq:'5 units',emoji:'🔋',tone:'#e0f4ea',supplier:'Pune GreenPower Systems'},
+{id:'p9',name:'Custom Corrugated Shipping Boxes',cat:'packaging',price:'US$0.18–0.55',moq:'2,000 pieces',emoji:'📦',tone:'#f3e9dc',supplier:'Anatolia Pack & Print'},
+{id:'p10',name:'Ceramic Brake Pad Set',cat:'auto',price:'US$6.80–12.40',moq:'300 sets',emoji:'🛞',tone:'#eaeaf0',supplier:'Guangzhou Kinetic Auto Parts'},
+{id:'p11',name:'Garden Planter Set',cat:'home',price:'US$3.50–7.00',moq:'100 sets',emoji:'🪴',tone:'#e8f3e7',supplier:'Nexus Home Supply (sample)'},
+{id:'p12',name:'Hydrating Skin Care Gift Set',cat:'beauty',price:'US$5.00–9.00',moq:'200 sets',emoji:'🧴',tone:'#f8e8ef',supplier:'Nexus Beauty Supply (sample)'}
+];
+let category='all',query='',favorites=JSON.parse(localStorage.getItem('nx_favs')||'[]'),basket=JSON.parse(localStorage.getItem('nx_basket')||'[]'),showFavorites=false;
+const $=id=>document.getElementById(id);
+function notify(msg){$('toast').textContent=msg;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2100)}
+function save(){localStorage.setItem('nx_favs',JSON.stringify(favorites));localStorage.setItem('nx_basket',JSON.stringify(basket));$('favCount').textContent=favorites.length;$('cartCount').textContent=basket.length}
+function render(){let list=products.filter(p=>(category==='all'||p.cat===category)&&(`${p.name} ${p.supplier} ${p.cat}`).toLowerCase().includes(query.toLowerCase()));if(showFavorites)list=list.filter(p=>favorites.includes(p.id));$('listTitle').textContent=showFavorites?'Your favorites':category==='all'?'Featured products':category[0].toUpperCase()+category.slice(1);$('products').innerHTML=list.length?list.map(p=>`<article class="product"><button class="heart" data-fav="${p.id}" aria-label="Favorite">${favorites.includes(p.id)?'❤️':'♡'}</button><div class="photo" style="--tone:${p.tone}">${p.emoji}</div><div class="pbody"><h3>${p.name}</h3><div class="price">${p.price}</div><div class="muted">MOQ: ${p.moq}</div><div class="muted">🏭 ${p.supplier}</div><span class="tag">Sample listing</span><div class="actions"><button class="primary" data-add="${p.id}">Add inquiry</button><button class="outline" data-detail="${p.id}">Details</button></div></div></article>`).join(''):'<div class="empty">No products found. Try another search or category.</div>';save()}
+function setCategory(cat){category=cat;showFavorites=false;document.querySelectorAll('[data-cat]').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));render();$('listing').scrollIntoView({behavior:'smooth'})}
+document.addEventListener('click',e=>{const fav=e.target.closest('[data-fav]'),add=e.target.closest('[data-add]'),detail=e.target.closest('[data-detail]'),cat=e.target.closest('[data-cat]');if(fav){let id=fav.dataset.fav;favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];render()}if(add){let id=add.dataset.add;if(!basket.includes(id))basket.push(id);render();notify('Added to your inquiry list')}if(detail){let p=products.find(x=>x.id===detail.dataset.detail);alert(`${p.name}\\nPrice: ${p.price}\\nMOQ: ${p.moq}\\nSupplier: ${p.supplier}\\n\\nDemo listing. Contact and ordering features will be added later.`)}if(cat)setCategory(cat.dataset.cat)});
+$('topSearch').addEventListener('submit',e=>{e.preventDefault();query=$('topQuery').value; $('heroQuery').value=query;render();$('listing').scrollIntoView({behavior:'smooth'})});
+$('heroSearch').addEventListener('submit',e=>{e.preventDefault();query=$('heroQuery').value;$('topQuery').value=query;render();$('listing').scrollIntoView({behavior:'smooth'})});
+$('favoritesBtn').onclick=()=>{showFavorites=!showFavorites;category='all';render();$('listing').scrollIntoView({behavior:'smooth'})};
+$('inquiryBtn').onclick=()=>{let names=basket.map(id=>products.find(p=>p.id===id)?.name).filter(Boolean);alert(names.length?'Your inquiry list:\\n\\n'+names.map((n,i)=>(i+1)+'. '+n).join('\\n')+'\\n\\nThis is a demo. Supplier messaging will be added later.':'Your inquiry list is empty. Tap “Add inquiry” on a product first.')};
+render();
+</script>
+</body></html>
